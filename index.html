@@ -770,7 +770,7 @@
         <div class="cartoon ca-box reveal">
           <div>
             <div style="font-weight:900;opacity:.7;">CONTRACT ADDRESS</div>
-            <code id="ca">dukeduke</code>
+            <code id="ca">0x61c3e0b20e0a84ef8a1ff889eac7ca5230ae3420</code>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;">
             <button class="btn" type="button" onclick="copyCA()">Copy CA</button>
@@ -793,7 +793,7 @@
           <div class="cartoon chart-shell">
             <iframe
               title="Dexscreener $DUKE chart"
-              src="https://dexscreener.com/arc/dukeduke?embed=1&theme=dark&trades=0&info=0"
+              src="https://dexscreener.com/arc/0x61c3e0b20e0a84ef8a1ff889eac7ca5230ae3420?embed=1&theme=dark&trades=0&info=0"
               allow="clipboard-write"
             ></iframe>
           </div>
@@ -883,7 +883,7 @@
             <div class="num">3</div>
             <img src="meme/HSqbvVzXUAEZlL8.jpg" alt="Duke buying" />
             <h3>Swap $DUKE</h3>
-            <p>Paste CA <b>dukeduke</b> and smash buy. He is pointing at the button for a reason.</p>
+            <p>Paste CA <b>0x61c3e0b20e0a84ef8a1ff889eac7ca5230ae3420</b> and smash buy. He is pointing at the button for a reason.</p>
           </article>
           <article class="cartoon step reveal">
             <div class="num">4</div>
@@ -906,13 +906,13 @@
       </p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
         <a class="btn" href="https://x.com/arccutedog" target="_blank" rel="noopener">𝕏 @arccutedog</a>
-        <button class="btn blue" type="button" onclick="copyCA()">CA: dukeduke</button>
+        <button class="btn blue" type="button" onclick="copyCA()">CA: 0x61c3e0b20e0a84ef8a1ff889eac7ca5230ae3420</button>
       </div>
       <p style="margin-top:18px;opacity:.65;font-weight:700;">A beautiful day for the Duke of ARC to come out and play. 🦴</p>
     </div>
   </footer>
 
-  <div class="toast" id="toast">Copied dukeduke 🐾</div>
+  <div class="toast" id="toast">Copied 0x61c3e0b20e0a84ef8a1ff889eac7ca5230ae3420 🐾</div>
   <div class="lightbox" id="lightbox" onclick="closeMeme()">
     <img id="lightbox-img" alt="Duke meme" />
   </div>
@@ -931,7 +931,7 @@
     }
 
     function copyCA() {
-      navigator.clipboard.writeText("dukeduke").then(() => {
+      navigator.clipboard.writeText("0x61c3e0b20e0a84ef8a1ff889eac7ca5230ae3420").then(() => {
         const toast = document.getElementById("toast");
         toast.classList.add("show");
         setTimeout(() => toast.classList.remove("show"), 1600);
