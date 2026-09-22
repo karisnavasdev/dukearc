@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DUKE | Official V4 Duke on ARC</title>
+  <meta name="description" content="OG $DUKE Token — Arc CEO Jeremy’s Dog. Official V4 Duke on ARC." />
+  <link rel="icon" href="logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #06101f;
+      --ink: #14110c;
+      --cream: #fff6df;
+      --gold: #ffd24a;
+      --gold-deep: #f0a202;
+      --sky: #4db4ff;
+      --royal: #1e5bff;
+      --red: #ff3b4e;
+      --white: #fffdf8;
+      --line: 4px solid #14110c;
+      --shadow: 8px 8px 0 #14110c;
+      --shadow-sm: 5px 5px 0 #14110c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Nunito", "Fredoka", system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, .btn { font-family: inherit; cursor: pointer; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .cartoon {
+      border: var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .title {
+      font-family: "Bangers", "Fredoka", cursive;
+      letter-spacing: 2px;
+      line-height: 0.95;
+    }
+
+    /* floating paws */
+    .sky-paws {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .sky-paws span {
+      position: absolute;
+      font-size: 22px;
+      opacity: 0.18;
+      animation: fall 16s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(6, 16, 31, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 4px solid #14110c;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      box-shadow: 4px 4px 0 #14110c;
+      animation: wiggle 2.4s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-4deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-text strong {
+      font-family: "Bangers", cursive;
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--gold);
+    }
+    .brand-text span {
+      font-size: 12px;
+      font-weight: 800;
+      color: #9fd4ff;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a:not(.btn) {
+      font-weight: 800;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:not(.btn):hover { background: rgba(255, 210, 74, 0.16); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: var(--line);
+      box-shadow: var(--shadow-sm);
+      font-weight: 900;
+      transition: 0.18s transform, 0.18s box-shadow;
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 #14110c; }
+    .btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #14110c; }
+    .btn.blue { background: var(--sky); }
+    .btn.red { background: var(--red); color: white; }
+    .btn.ghost { background: #fff; }
+
+    /* MARQUEE */
+    .tape {
+      background: var(--gold);
+      color: var(--ink);
+      border-bottom: 4px solid #14110c;
+      overflow: hidden;
+      white-space: nowrap;
+      font-weight: 900;
+      padding: 10px 0;
+    }
+
+    .tape-track {
+      display: inline-flex;
+      gap: 28px;
+      animation: slide 22s linear infinite;
+      min-width: max-content;
+    }
+
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 88vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .hero-banner {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      transform: scale(1.04);
+      animation: ken 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes ken {
+      from { transform: scale(1.02) translateY(0); }
+      to { transform: scale(1.08) translateY(-12px); }
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(6,16,31,.28) 0%, rgba(6,16,31,.55) 45%, rgba(6,16,31,.92) 100%),
+        radial-gradient(circle at 20% 20%, rgba(255,210,74,.18), transparent 28%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 36px;
+      align-items: center;
+      padding: 64px 0 48px;
+    }
+
+    .speech {
+      background: var(--white);
+      color: var(--ink);
+      border: var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      padding: 16px 18px;
+      font-weight: 800;
+      width: fit-content;
+      position: relative;
+      animation: pop 1.1s ease infinite alternate;
+    }
+
+    .speech::after {
+      content: "";
+      position: absolute;
+      left: 28px;
+      bottom: -16px;
+      border: 10px solid transparent;
+      border-top-color: #14110c;
+    }
+
+    @keyframes pop {
+      from { transform: translateY(0) rotate(-2deg); }
+      to { transform: translateY(-6px) rotate(2deg); }
+    }
+
+    .hero h1 {
+      font-size: clamp(64px, 10vw, 132px);
+      margin: 16px 0 8px;
+      text-shadow: 6px 6px 0 #14110c, 0 0 24px rgba(255,210,74,.35);
+    }
+
+    .ticker-pill {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ink);
+      border: var(--line);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-family: "Bangers", cursive;
+      letter-spacing: 2px;
+      font-size: 28px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 16px;
+    }
+
+    .hero p.lead {
+      font-size: 20px;
+      max-width: 620px;
+      font-weight: 800;
+      text-shadow: 0 2px 12px rgba(0,0,0,.6);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-art img.main {
+      width: min(420px, 100%);
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 36px;
+      border: 6px solid #14110c;
+      box-shadow: 12px 12px 0 #14110c, 0 0 40px rgba(77,180,255,.35);
+      animation: floaty 3.4s ease-in-out infinite;
+      background: #fff;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-16px) rotate(2deg); }
+    }
+
+    .badge {
+      position: absolute;
+      border: var(--line);
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 900;
+      padding: 8px 12px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    .badge.one { top: 18px; left: -10px; background: var(--red); color: #fff; }
+    .badge.two { bottom: 28px; right: -6px; background: var(--sky); }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(-8deg); }
+      50% { transform: translateY(-10px) rotate(6deg); }
+    }
+
+    .rocket {
+      position: absolute;
+      width: 120px;
+      top: -20px;
+      right: -20px;
+      animation: zoom 7s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes zoom {
+      0% { transform: translate(-40px, 80px) rotate(-20deg) scale(.6); opacity: 0; }
+      15% { opacity: 1; }
+      100% { transform: translate(80px, -140px) rotate(12deg) scale(1); opacity: 0; }
+    }
+
+    /* SECTIONS */
+    section { position: relative; z-index: 1; padding: 84px 0; }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(42px, 7vw, 74px);
+      color: var(--gold);
+      text-shadow: 4px 4px 0 #14110c;
+    }
+
+    .section-head p {
+      margin-top: 10px;
+      font-weight: 800;
+      color: #d7ecff;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-card {
+      padding: 28px;
+    }
+
+    .about-card h3 {
+      font-family: "Bangers", cursive;
+      font-size: 36px;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .about-card p { font-weight: 700; font-size: 18px; line-height: 1.55; }
+
+    .about-pics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .about-pics img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: var(--line);
+      box-shadow: var(--shadow-sm);
+      transition: 0.25s transform;
+    }
+
+    .about-pics img:hover { transform: rotate(-2deg) scale(1.03); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      background: #fff;
+      border: var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat b {
+      display: block;
+      font-family: "Bangers", cursive;
+      font-size: 30px;
+      letter-spacing: 1px;
+    }
+
+    /* CA BOX */
+    .ca-box {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 24px;
+      background: #fff;
+      margin-top: 22px;
+    }
+
+    .ca-box code {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 900;
+      letter-spacing: 1px;
+      word-break: break-all;
+    }
+
+    /* CHART */
+    .chart-shell {
+      padding: 14px;
+      background: #0d1b30;
+      overflow: hidden;
+    }
+
+    .chart-shell iframe {
+      width: 100%;
+      height: 680px;
+      border: 0;
+      border-radius: 16px;
+      background: #0b1220;
+    }
+
+    .chart-side {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .chart-dog {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .chart-dog img {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+    }
+
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .meme {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      cursor: pointer;
+      transform: rotate(var(--r, 0deg));
+      transition: 0.2s transform;
+    }
+
+    .meme:hover { transform: rotate(0deg) translateY(-8px) scale(1.03); z-index: 2; }
+
+    .meme img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    .meme figcaption {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      background: var(--gold);
+      color: var(--ink);
+      border: 3px solid #14110c;
+      border-radius: 12px;
+      font-weight: 900;
+      padding: 6px 8px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* HOW */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      padding: 22px 18px;
+      text-align: center;
+    }
+
+    .step img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 3px solid #14110c;
+      margin-bottom: 14px;
+    }
+
+    .step .num {
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid #14110c;
+      display: grid;
+      place-items: center;
+      font-family: "Bangers", cursive;
+      font-size: 24px;
+    }
+
+    .step h3 {
+      font-family: "Bangers", cursive;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 4px solid #14110c;
+      background: #040910;
+      padding: 36px 0 28px;
+      text-align: center;
+    }
+
+    footer img {
+      width: 74px;
+      height: 74px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      margin: 0 auto 12px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--gold);
+      color: var(--ink);
+      border: var(--line);
+      box-shadow: var(--shadow-sm);
+      padding: 12px 18px;
+      border-radius: 16px;
+      font-weight: 900;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 80;
+      transition: 0.25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 8, 16, 0.88);
+      display: none;
+      place-items: center;
+      z-index: 90;
+      padding: 24px;
+    }
+
+    .lightbox.open { display: grid; }
+
+    .lightbox img {
+      max-width: min(920px, 92vw);
+      max-height: 82vh;
+      border-radius: 20px;
+      border: 6px solid #14110c;
+      box-shadow: var(--shadow);
+    }
+
+    .paw-cursor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 100;
+      font-size: 18px;
+      animation: fadePaw 700ms ease forwards;
+    }
+
+    @keyframes fadePaw {
+      to { opacity: 0; transform: translateY(-16px) scale(.4); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      animation: reveal .7s ease forwards;
+    }
+
+    @keyframes reveal {
+      to { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .about-grid, .chart-side, .stats, .steps, .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav-links a:not(.btn) { display: none; }
+      .hero { min-height: auto; }
+    }
+
+    @media (max-width: 680px) {
+      .hero-grid, .about-grid, .chart-side, .stats, .steps, .gallery, .about-pics {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 { font-size: 72px; }
+      .chart-shell iframe { height: 520px; }
+      .brand img { width: 48px; height: 48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky-paws" id="paws"></div>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        <img src="logo.jpg" alt="Duke logo" />
+        <div class="brand-text">
+          <strong>DUKE</strong>
+          <span>Official V4 on ARC</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#token">Token</a>
+        <a href="#chart">Chart</a>
+        <a href="#memes">Memes</a>
+        <a href="#buy">How to Buy</a>
+        <a class="btn ghost" href="https://x.com/arccutedog" target="_blank" rel="noopener">𝕏 Twitter</a>
+        <a class="btn" href="#chart">Buy $DUKE</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="tape">
+    <div class="tape-track" id="tape">
+      <span>🦴 $DUKE • OG DOG OF ARC • JEREMY’S BEST BOY • OFFICIAL V4 • NO DAYS OFF • LAST CHANCE UNDER 1M • JACKPOT SOON • TO THE ATH • 🚀</span>
+      <span>🦴 $DUKE • OG DOG OF ARC • JEREMY’S BEST BOY • OFFICIAL V4 • NO DAYS OFF • LAST CHANCE UNDER 1M • JACKPOT SOON • TO THE ATH • 🚀</span>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <img class="hero-banner" src="banner.jpg" alt="$DUKE banner — Duke standing under the ARC" />
+      <div class="wrap hero-grid">
+        <div>
+          <div class="speech">woof. the Duke of ARC is outside now.</div>
+          <h1 class="title">MEET<br />DUKE</h1>
+          <div class="ticker-pill">$DUKE</div>
+          <p class="lead">
+            OG $DUKE Token / @Arc CEO Jeremy’s Dog.<br />
+            Official V4 Duke on ARC. The #1 dog coin with a crown, a cape, and zero days off.
+          </p>
+          <div class="hero-actions">
+            <button class="btn" type="button" onclick="copyCA()">Copy CA</button>
+            <a class="btn blue" href="#chart">Live Chart</a>
+            <a class="btn red" href="https://x.com/arccutedog" target="_blank" rel="noopener">Follow the Duke</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img class="rocket" src="meme/HShNlHAWYAAMMFJ.jpg" alt="Duke flying a rocket" />
+          <img class="main" src="meme/HSnxxuUWEAAFCSv.jpg" alt="King Duke on the throne" />
+          <div class="badge one">OG V4</div>
+          <div class="badge two">Jeremy’s Dog</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2 class="title">WHO LET THE DUKE OUT?</h2>
+          <p>Not a random dog coin. This one sits on the CEO’s couch.</p>
+        </div>
+        <div class="about-grid">
+          <article class="cartoon about-card reveal">
+            <h3>The royal story</h3>
+            <p>
+              Duke is the OG $DUKE token — Arc CEO Jeremy’s actual dog, now the official V4 Duke on ARC.
+              He doesn’t take days off, he doesn’t fade, and he definitely does not negotiate with vampires.
+            </p>
+            <p style="margin-top:12px;">
+              Beautiful day? Duke comes out to play. Casino open? Jackpot incoming.
+              Chart looking spicy? The Duke is already sitting at the BUY button.
+            </p>
+            <div class="stats">
+              <div class="stat"><b>DUKE</b>ticker</div>
+              <div class="stat"><b>ARC</b>chain</div>
+              <div class="stat"><b>V4</b>official</div>
+              <div class="stat"><b>OG</b>status</div>
+            </div>
+          </article>
+          <div class="about-pics reveal">
+            <img src="logo.jpg" alt="Real Duke portrait" />
+            <img src="meme/HSNMgOlXQAAddnr.jpg" alt="Duke with Jeremy" />
+            <img src="meme/HSYGLk8XoAA-Pbi.jpg" alt="Duke on the number one podium" />
+            <img src="meme/HSsLwbRWwAE1M9p.jpg" alt="Superhero Duke in fire" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="token">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2 class="title">THE TREASURE</h2>
+          <p>Contract address is short. Memory is optional. Copy button is not.</p>
+        </div>
+        <div class="cartoon ca-box reveal">
+          <div>
+            <div style="font-weight:900;opacity:.7;">CONTRACT ADDRESS</div>
+            <code id="ca">dukeduke</code>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn" type="button" onclick="copyCA()">Copy CA</button>
+            <a class="btn blue" href="https://x.com/arccutedog" target="_blank" rel="noopener">Twitter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="chart">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2 class="title">WATCH DUKE RUN</h2>
+          <p>Dexscreener live chart. Position wisely. The rocket already left the yard.</p>
+        </div>
+        <div class="chart-side reveal">
+          <figure class="cartoon chart-dog">
+            <img src="meme/HSqbvVzXUAEZlL8.jpg" alt="Duke clicking BUY on the $DUKE chart" />
+          </figure>
+          <div class="cartoon chart-shell">
+            <iframe
+              title="Dexscreener $DUKE chart"
+              src="https://dexscreener.com/arc/dukeduke?embed=1&theme=dark&trades=0&info=0"
+              allow="clipboard-write"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="memes">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2 class="title">DUKE LORE</h2>
+          <p>Click any card. The Duke has range. Chef, soldier, king, menace.</p>
+        </div>
+        <div class="gallery">
+          <figure class="cartoon meme" style="--r:-2deg" onclick="openMeme(this)">
+            <img src="meme/HShNlHAWYAAMMFJ.jpg" alt="Duke in a rocket" />
+            <figcaption>Almost time for takeoff</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:2deg" onclick="openMeme(this)">
+            <img src="meme/HSih1KabsAADLXY.jpg" alt="Duke hits the jackpot" />
+            <figcaption>Casino just opened</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:-1deg" onclick="openMeme(this)">
+            <img src="meme/HSlNqW5WcAAYtjE.jpg" alt="Duke drinking coffee" />
+            <figcaption>No days off</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:1.5deg" onclick="openMeme(this)">
+            <img src="meme/HSmE4CAXQAASp93.jpg" alt="Chef Duke cooking" />
+            <figcaption>Something is cooking</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:2deg" onclick="openMeme(this)">
+            <img src="meme/HSnxxuUWEAAFCSv.jpg" alt="King Duke" />
+            <figcaption>The Duke of ARC</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:-2deg" onclick="openMeme(this)">
+            <img src="meme/HSq9DRrW0AAjFxp.jpg" alt="Duke marking a vampire grave" />
+            <figcaption>RIP $DUKE vamps</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:1deg" onclick="openMeme(this)">
+            <img src="meme/HSr5yqNWMAA4uMT.jpg" alt="Zen Duke" />
+            <figcaption>Diamond paws</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:-1.5deg" onclick="openMeme(this)">
+            <img src="meme/HSsxmlaWkAAGZxs.jpg" alt="Duke climbing a mountain" />
+            <figcaption>Grind never stops</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:2deg" onclick="openMeme(this)">
+            <img src="meme/HStePjQWEAAC6Yg.jpg" alt="Duke army charging" />
+            <figcaption>Duke army assemble</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:-2deg" onclick="openMeme(this)">
+            <img src="meme/HSY82iiWIAAC9Kn.jpg" alt="Duke dropping a vampire off a cliff" />
+            <figcaption>Bye bye vampire</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:1deg" onclick="openMeme(this)">
+            <img src="meme/HSYGLk8XoAA-Pbi.jpg" alt="Duke winning first place" />
+            <figcaption>#1 dog on ARC</figcaption>
+          </figure>
+          <figure class="cartoon meme" style="--r:-1deg" onclick="openMeme(this)">
+            <img src="meme/HSsLwbRWwAE1M9p.jpg" alt="Fire cape Duke" />
+            <figcaption>New ATH energy</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="buy">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2 class="title">HOW TO JOIN THE PACK</h2>
+          <p>Four easy steps. No tricks. Just Duke.</p>
+        </div>
+        <div class="steps">
+          <article class="cartoon step reveal">
+            <div class="num">1</div>
+            <img src="meme/HSlNqW5WcAAYtjE.jpg" alt="Get ready with coffee Duke" />
+            <h3>Wake up</h3>
+            <p>Grab a wallet that talks to ARC. Duke already had his coffee.</p>
+          </article>
+          <article class="cartoon step reveal">
+            <div class="num">2</div>
+            <img src="meme/HSsxmlaWkAAGZxs.jpg" alt="Duke climbing" />
+            <h3>Get on ARC</h3>
+            <p>Bridge funds to ARC. The trail is steep. Duke is already halfway up.</p>
+          </article>
+          <article class="cartoon step reveal">
+            <div class="num">3</div>
+            <img src="meme/HSqbvVzXUAEZlL8.jpg" alt="Duke buying" />
+            <h3>Swap $DUKE</h3>
+            <p>Paste CA <b>dukeduke</b> and smash buy. He is pointing at the button for a reason.</p>
+          </article>
+          <article class="cartoon step reveal">
+            <div class="num">4</div>
+            <img src="meme/HSih1KabsAADLXY.jpg" alt="Duke jackpot" />
+            <h3>Stay tuned</h3>
+            <p>Casino is open. Jackpot is coming. Hold like a good dog.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <img src="logo.jpg" alt="Duke" />
+      <h3 class="title" style="font-size:42px;color:var(--gold);">DUKE</h3>
+      <p style="font-weight:800;margin:8px 0 16px;">
+        OG $DUKE Token / @Arc CEO Jeremy’s Dog<br />
+        Official V4 Duke on ARC
+      </p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a class="btn" href="https://x.com/arccutedog" target="_blank" rel="noopener">𝕏 @arccutedog</a>
+        <button class="btn blue" type="button" onclick="copyCA()">CA: dukeduke</button>
+      </div>
+      <p style="margin-top:18px;opacity:.65;font-weight:700;">A beautiful day for the Duke of ARC to come out and play. 🦴</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Copied dukeduke 🐾</div>
+  <div class="lightbox" id="lightbox" onclick="closeMeme()">
+    <img id="lightbox-img" alt="Duke meme" />
+  </div>
+
+  <script>
+    const paws = document.getElementById("paws");
+    const icons = ["🐾", "🦴", "✨", "👑"];
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement("span");
+      s.textContent = icons[i % icons.length];
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.animationDuration = 10 + Math.random() * 12 + "s";
+      s.style.animationDelay = -Math.random() * 16 + "s";
+      s.style.fontSize = 16 + Math.random() * 18 + "px";
+      paws.appendChild(s);
+    }
+
+    function copyCA() {
+      navigator.clipboard.writeText("dukeduke").then(() => {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 1600);
+      });
+    }
+
+    function openMeme(el) {
+      const img = el.querySelector("img");
+      document.getElementById("lightbox-img").src = img.src;
+      document.getElementById("lightbox-img").alt = img.alt;
+      document.getElementById("lightbox").classList.add("open");
+    }
+
+    function closeMeme() {
+      document.getElementById("lightbox").classList.remove("open");
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      if (Math.random() > 0.18) return;
+      const paw = document.createElement("div");
+      paw.className = "paw-cursor";
+      paw.textContent = "🐾";
+      paw.style.left = e.clientX + "px";
+      paw.style.top = e.clientY + "px";
+      document.body.appendChild(paw);
+      setTimeout(() => paw.remove(), 700);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMeme();
+    });
+  </script>
+</body>
+</html>
